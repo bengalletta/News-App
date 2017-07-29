@@ -17,22 +17,22 @@ package com.example.android.newsapp.tasks;
 
 
 public class FetchNews {
-    //method to fetch the articles from the API and store them in the database
-    public static void fetchArticles(Context context){
-        ArrayList<NewsItem>  articles = null;
+    //method to fetch the articles from the API
+    public static void fetchArticles(Context context){ //stores them in the database
+        ArrayList<NewsItem>  articlesList = null;
         URL url = NetworkUtils.buildUrl();
 
         SQLiteDatabase db = new DBHelper(context).getWritableDatabase();
         try{
-            //clear the database of its current data
+            //clear the database
             DatabaseUtils.deleteAll(db);
 
-            //Grabs results from the API and parses the JSON
+            //Grabs results from the API
             String json = NetworkUtils.getResponseFromHttpUrl(url);
-            articles = NewsJsonUtils.parseJSON(json);
+            articlesList = NewsJsonUtils.parseJSON(json); //parsing json
 
             //insert the json results of the articles into the database
-            DatabaseUtils.bulkInsert(db, articles);
+            DatabaseUtils.bulkInsert(db, articlesList);
 
         }catch(IOException e){
             e.printStackTrace();

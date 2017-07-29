@@ -19,29 +19,22 @@ public class ScheduleUtilities {
     private static boolean sInitialized;
 
     synchronized public static void scheduleRefresh(@NonNull final Context context){
-        if(sInitialized) return; //if the job already initialized, simply return
+        if(sInitialized) return;
 
         Driver driver = new GooglePlayDriver(context);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
 
         Job constraintRefreshJob = dispatcher.newJobBuilder()
-                //sets what Job service to run for the dispatcher
+                //sets what Job service to run
                 .setService(NewsJob.class)
-                //set the tag to identify the job
+                //set the tag
                 .setTag(NEWS_JOB_TAG)
-                //runtime when a job is eligible to start running, in this case, it's when the user
-                //has internet available
+                //runtime when a job available if there is internet
                 .setConstraints(Constraint.ON_ANY_NETWORK)
-                //sets when the job should be executed, in this case, forever
                 .setLifetime(Lifetime.FOREVER)
-                //tells if the job should reoccur, in this case, yes
                 .setRecurring(true)
-                //the range where the job should trigger, from a starting period to a respectable amount
-                //afterwards; in this case set it to be exactly 1 min (give or take a few secs off)
                 .setTrigger(Trigger.executionWindow(SCHEDULE_INTERVAL_MINUTES, SCHEDULE_INTERVAL_MINUTES))
-                //asks if this job should replace previous jobs with the same tag (i.e. NEWS_JOB_TAG)
                 .setReplaceCurrent(true)
-                //builds the job with all the settings specificed above
                 .build();
 
         dispatcher.schedule(constraintRefreshJob);

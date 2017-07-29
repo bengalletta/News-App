@@ -4,10 +4,10 @@ package com.example.android.newsapp.database;
 
 public class Contract {
     public static class TABLE_ARTICLES implements BaseColumns{
-        //name of the table to be used
+        //table to be used in sql
         public static final String TABLE_NAME = "newsarticles";
 
-        //an article's attributes
+        //these are all of the article's attributes
         public static final String COLUMN_NAME_TITLE = "title";
         public static final String COLUMN_NAME_AUTHOR = "author";
         public static final String COLUMN_NAME_PUBLISHED_DATE = "published_date";

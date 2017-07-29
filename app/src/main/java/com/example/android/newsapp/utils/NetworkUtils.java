@@ -1,7 +1,6 @@
 package com.example.android.newsapp.utils;
 
 import android.net.Uri;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,20 +16,18 @@ public final class NetworkUtils {
     private static final String STATIC_NEWS_URL = "https://newsapi.org/v1/articles?";
     private static final String NEWS_BASE_URL = STATIC_NEWS_URL;
 
-    /* The source the API is to return */
     private final static String SOURCE = "the-next-web";
     /* The order the API is to return */
     private final static String SORT_BY = "latest";
-    /* The (unique) API key used in the URL */
-    //TODO: Insert your own API KEY HERE
-    private final static String API_KEY = "";
+    //My API key from news.org
+    private final static String API_KEY = "22e2c2e2f27f4664929e84e91e3f9d9a";
 
 
     final static String SOURCE_PARAM = "source";
     final static String SORT_PARAM = "sortBy";
     final static String API_KEY_PARAM = "apiKey";
 
-    //pass as a parameter if needed to
+    //pass as a parameter if needed
     public static String get_API_Key(){ return API_KEY; }
 
     public static URL buildUrl() {

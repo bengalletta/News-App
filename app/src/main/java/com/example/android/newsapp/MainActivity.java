@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //Checks if the app has been installed before
+        //Checks if app is installed
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isFirst = sp.getBoolean("isfirst", true);
 
-        //if it hasn't been installed, calls to restart the loader while marking
+        //if not installed it calls to restart the loader
         if(isFirst){
             load();
             SharedPreferences.Editor editor = sp.edit();
@@ -59,8 +59,7 @@ public class MainActivity extends AppCompatActivity
             editor.commit();
         }
 
-        //Schedules the job dispatcher to refresh for any new articles posted (still calls it if
-        //there aren't any, however)
+        //Schedules the job dispatcher to refresh for any new articles posted
         ScheduleUtilities.scheduleRefresh(this);
 
     }
@@ -84,14 +83,14 @@ public class MainActivity extends AppCompatActivity
     public Loader<Void> onCreateLoader(int id, final Bundle args){
         return new AsyncTaskLoader<Void>(this) {
 
-            //Equivalent to AsyncTask's onPreExecute method
+            //this is equal to AsyncTask's onPreExecute method
             @Override
             public void onStartLoading(){
                 super.onStartLoading();
                 bar.setVisibility(View.VISIBLE);
             }
 
-            //Equivalent to AsyncTask's doInBackGround method
+            //Equal to AsyncTask's doInBackGround method
             @Override
             public Void loadInBackground() {
                 FetchNews.fetchArticles(MainActivity.this);
@@ -100,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         };
     }
 
-    //Equivalent to AsyncTask's onPostExecute method
+    //this is equal to AsyncTask's onPostExecute method
     @Override
     public void onLoadFinished(Loader<Void> loader, Void data){
         bar.setVisibility(View.GONE);
@@ -133,14 +132,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onNewsClick(Cursor cursor, int clickedItem){
-        //moves the cursor to the clicked item
+
+        //moves the cursor to item that was clicked
         cursor.moveToPosition(clickedItem);
 
-        //get the url link of the item the user has tapped
+        //get the url link that the user clicked
         String url = cursor.getString(cursor.getColumnIndex(Contract.TABLE_ARTICLES.COLUMN_NAME_URL));
         Log.d(TAG, String.format("URL: %s", url));
 
-        //opens up the url link to the article via the user's browser
+        //opens up the url with user's browser
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);

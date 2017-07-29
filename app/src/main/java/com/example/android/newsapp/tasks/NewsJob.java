@@ -8,14 +8,14 @@ package com.example.android.newsapp.tasks;
 public class NewsJob extends JobService {
     private AsyncTask mBackgroundTask;
 
-    //initial method when the job gets called which will run on the main thread
+    //runs on the main thread
     @Override
     public boolean onStartJob(final JobParameters job){
         mBackgroundTask = new AsyncTask() {
 
             @Override
             protected void onPreExecute(){
-                //Notifies the user that the activity has automatically refreshed
+                //tells that feed was refreshed
                 Toast.makeText(NewsJob.this, "News has been refreshed.", Toast.LENGTH_SHORT).show();
                 super.onPreExecute();
             }
@@ -27,7 +27,6 @@ public class NewsJob extends JobService {
 
             @Override
             protected void onPostExecute(Object o){
-                //indicates job completion
                 jobFinished(job, false);
                 super.onPostExecute(o);
             }

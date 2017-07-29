@@ -9,10 +9,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by li-en on 6/25/17.
- */
-
 public class NewsJsonUtils {
     private static final String NEWS_ARTICLES = "articles";
     private static String NEWS_AUTHOR = "author";
@@ -40,7 +36,6 @@ public class NewsJsonUtils {
             NewsItem newsItem = new NewsItem(author, title, description, url, imgUrl, published);
             results.add(newsItem);
         }
-
 
         return results;
     }

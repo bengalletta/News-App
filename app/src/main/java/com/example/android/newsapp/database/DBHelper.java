@@ -15,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    //creates the table on the database
+    //creates the table
     @Override
     public void onCreate(SQLiteDatabase db){
         String queryString = "CREATE TABLE " + Contract.TABLE_ARTICLES.TABLE_NAME + " (" +

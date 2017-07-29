@@ -8,6 +8,7 @@ package com.example.android.newsapp.database;
         import static com.example.android.newsapp.database.Contract.TABLE_ARTICLES.*;
 
 public class DatabaseUtils {
+
     //Query that gets all the items in the table and sort them by the most recent updates
     public static Cursor getAll(SQLiteDatabase db) {
         Cursor cursor = db.query(
@@ -22,7 +23,7 @@ public class DatabaseUtils {
         return cursor;
     }
 
-    //easier way to insert multiple articles into the db
+    //easier way to insert multiple articles into database
     public static void bulkInsert(SQLiteDatabase db, ArrayList<NewsItem> articles){
         db.beginTransaction();
         try{
@@ -43,7 +44,7 @@ public class DatabaseUtils {
         }
     }
 
-    //completely deletes the table and all of its values
+    //deletes the table
     public static void deleteAll(SQLiteDatabase db){
         db.delete(TABLE_NAME, null, null);
     }
