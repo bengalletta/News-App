@@ -1,79 +1,68 @@
 package com.example.android.newsapp.models;
 
 
-/**
- * Store information about a news story (author, title, description,... etc) from NewsApi Articles
- */
 public class NewsItem {
-
-    private final String title;
-    private final String author;
-    private final String description;
-    private final String publishedAt;
+    private String author;
+    private String title;
+    private String description;
     private String url;
     private String urlToImage;
+    private String publishedAt;
 
-    private NewsItem(NewsItem.Builder builder) {
-        this.author = builder.author;
-        this.title = builder.title;
-        this.description = builder.description;
-        this.url = builder.url;
-        this.urlToImage = builder.urlToImage;
-        this.publishedAt = builder.publishedAt;
+    public NewsItem(String authorIn, String titleIn, String descriptIn, String urlIn, String imgUrl, String publishedIn){
+        this.author = authorIn;
+        this.title = titleIn;
+        this.description = descriptIn;
+        this.url = urlIn;
+        this.urlToImage = imgUrl;
+        this.publishedAt = publishedIn;
     }
 
     public String getAuthor() {
         return author;
     }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getUrl() {
         return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getUrlToImage() {
         return urlToImage;
     }
 
+    public void setUrlToImage(String urlToImage) {
+        this.urlToImage = urlToImage;
+    }
+
     public String getPublishedAt() {
         return publishedAt;
     }
 
-    public static class Builder {
-        private final String title;
-        private final String author;
-        private final String description;
-        private final String publishedAt;
-        private String url;
-        private String urlToImage;
-
-        public Builder(String title, String author, String description, String publishedAt) {
-            this.title = title;
-            this.author = author;
-            this.description = description;
-            this.publishedAt = publishedAt;
-        }
-
-        public NewsItem build() {
-            return new NewsItem(this);
-        }
-
-        public Builder url(String url) {
-            this.url = url;
-            return this;
-        }
-
-        public Builder urlToImage(String urlToImage) {
-            this.urlToImage = urlToImage;
-            return this;
-        }
+    public void setPublishedAt(String publishedAt) {
+        this.publishedAt = publishedAt;
     }
 }
-
